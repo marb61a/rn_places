@@ -3,29 +3,20 @@ import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
 // Just like in React web apps custom components start with uppercase characters
 import ListItem from './src/components/ListItem/ListItem';
+import PlaceInput from "./src/components/PlaceInput/PlaceInput";
+import PlaceList from ".src/components/PlaceList/PlaceList";
 
 export default class App extends React.Component {
   state = {
-    placeName: '',
     places: []
   }
 
-  placeNameChangedHandler = val => {
-    this.setState({
-      placeName: val
-    });
-  };
-
-  placeSubmitHandler = () => {
-    if(this.state.placeName.trim() === ""){
-      return;
-    }
-
+  placeAddedHandler = placeName => {
     this.setState(prevState => {
       return {
-        places: prevState.places.concat(prevState.placeName)
-      };
-    });
+        places: prevState.places.concat(placeName)
+      }
+    })
   }
 
   render() {
